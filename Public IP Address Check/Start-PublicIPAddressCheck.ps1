@@ -42,10 +42,10 @@ $EmailAuth = New-Object System.Management.Automation.PSCredential ($EmailAuthUse
 if ((Invoke-WebRequest ipecho.net/plain).content -eq $CurrentPublicIP) {
     # IP address hasn't changed
     # Uncomment line below if you want to recive an email to confrim it hasnt changed
-    Send-MailMessage -Body "IP Address is has not changed" -From $EmailAuthUser -To $EmailTo -Subject "IP address has not changed" -SmtpServer $SMTPServer -Port $SMTPPort -UseSsl -Credential $EmailAuth
+    Send-MailMessage -Body "IP Address has not changed" -From $EmailAuthUser -To $EmailTo -Subject "IP address has not changed" -SmtpServer $SMTPServer -Port $SMTPPort -UseSsl -Credential $EmailAuth
 }
 Else {
     # IP address has changed
-    Send-MailMessage -Body "IP Address is has changed" -From $EmailAuthUser -To $EmailTo -Subject "IP Address Change - ALERT" -SmtpServer $SMTPServer -Port $SMTPPort -UseSsl -Credential $EmailAuth
+    Send-MailMessage -Body "IP Address has changed" -From $EmailAuthUser -To $EmailTo -Subject "IP Address Change - ALERT" -SmtpServer $SMTPServer -Port $SMTPPort -UseSsl -Credential $EmailAuth
     (Invoke-WebRequest ipecho.net/plain).content > ".\currentip.txt"
 }
